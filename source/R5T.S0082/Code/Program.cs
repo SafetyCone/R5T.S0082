@@ -1,13 +1,16 @@
 using System;
+using System.Threading.Tasks;
 
 
 namespace R5T.S0082
 {
     class Program
     {
-        static void Main()
+        static async Task Main()
         {
-            Console.WriteLine("Hello World!");
+            //await DocumentationCommentScripts.Instance.Get_RawProjectDocumentationComments();
+            //await DocumentationCommentScripts.Instance.Get_SingleProjectDocumentationComments();
+            //await DocumentationCommentScripts.Instance.Get_ProjectDocumentationComments();
         }
     }
 }
