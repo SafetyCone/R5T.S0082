@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using R5T.T0132;
+using R5T.T0159;
 using R5T.T0162;
 using R5T.T0172.Extensions;
+using R5T.T0181.Extensions;
 using R5T.T0212.F000;
 
 
@@ -23,14 +25,25 @@ namespace R5T.S0082
             /// Inputs.
             var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0000\source\R5T.F0000\R5T.F0000.csproj".ToProjectFilePath();
             var outputFilePath = Instances.FilePaths.OutputTextFilePath;
+            var outputFilePath2 = Instances.FilePaths.OutputTextFilePath_Secondary;
             var errorsFilePath = Instances.FilePaths.OutputErrorsTextFilePath;
 
 
             /// Run.
             var missingDocumentationReferences = new List<MissingDocumentationReference>();
 
+            var rawDocumentationCommentsByIdentityName = await Instances.DocumentationCommentOperations.Get_DocumentationComments_Recursive_Raw(
+                projectFilePath);
+
+            Instances.MemberDocumentationOperator.Describe_ToFile_Synchronous(
+                outputFilePath2.ToTextFilePath(),
+                rawDocumentationCommentsByIdentityName);
+
+            Instances.NotepadPlusPlusOperator.Open(outputFilePath2);
+
             var documentationCommentsByIdentityName = await Instances.DocumentationCommentOperations.Get_DocumentationComments(
                 projectFilePath,
+                TextOutput.Null,
                 missingDocumentationReferences);
 
             var lines = Instances.MemberDocumentationOperator.Describe(documentationCommentsByIdentityName.Values);
@@ -65,6 +78,7 @@ namespace R5T.S0082
 
             var documentationCommentsByIdentityName = await Instances.DocumentationCommentOperations.Get_DocumentationComments_NonRecursive(
                 projectFilePath,
+                TextOutput.Null,
                 missingDocumentationReferences);
 
             var lines = Instances.MemberDocumentationOperator.Describe(documentationCommentsByIdentityName.Values);
