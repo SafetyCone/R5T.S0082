@@ -128,10 +128,10 @@ namespace R5T.S0082
 
             /// Run.
             // Use the standard deserialization (which preserves whitespace).
-            var documentationDocument = Instances.DocumentationFileOperator.Parse(documentationFileXmlText);
+            var documentationDocument = Instances.DocumentationFileDocumentOperator.Parse(documentationFileXmlText);
 
             // Use the standard serialization (which preserves whitespace).
-            await Instances.DocumentationFileOperator.Save(
+            await Instances.DocumentationFileDocumentOperator.Save(
                 outputFilePath,
                 documentationDocument);
 
@@ -150,10 +150,10 @@ namespace R5T.S0082
 
             /// Run.
             // Use the standard deserialization (which preserves whitespace).
-            var documentationDocument = Instances.DocumentationFileOperator.Parse(documentationFileXmlText);
+            var documentationDocument = Instances.DocumentationFileDocumentOperator.Parse(documentationFileXmlText);
 
             // Use the standard serialization (which preserves whitespace).
-            var text = Instances.DocumentationFileOperator.ToString(documentationDocument);
+            var text = Instances.DocumentationFileDocumentOperator.ToString(documentationDocument);
 
             Instances.NotepadPlusPlusOperator.WriteTextAndOpen(
                 outputFilePath,
@@ -175,9 +175,9 @@ namespace R5T.S0082
 
             /// Run.
             // Use the standard deserialization (which preserves whitespace).
-            var documentationDocument = Instances.DocumentationFileOperator.Parse(documentationFileXmlText);
+            var documentationDocument = Instances.DocumentationFileDocumentOperator.Parse(documentationFileXmlText);
 
-            using var fileStream = Instances.FileStreamOperator.NewWrite(outputFilePath);
+            using var fileStream = Instances.FileStreamOperator.Open_Write(outputFilePath);
             using var writer = new StreamWriter(fileStream);
 
             await documentationDocument.Value.SaveAsync(
@@ -204,9 +204,9 @@ namespace R5T.S0082
 
             /// Run.
             // Use the standard deserialization (which preserves whitespace).
-            var documentationDocument = Instances.DocumentationFileOperator.Parse(documentationFileXmlText);
+            var documentationDocument = Instances.DocumentationFileDocumentOperator.Parse(documentationFileXmlText);
 
-            using var fileStream = Instances.FileStreamOperator.NewWrite(outputFilePath);
+            using var fileStream = Instances.FileStreamOperator.Open_Write(outputFilePath);
             using var writer = new StreamWriter(fileStream);
 
             await documentationDocument.Value.SaveAsync(
@@ -272,7 +272,7 @@ namespace R5T.S0082
 
             var documentationElement = Instances.DocumentationFileXmlOperator.Get_DocumentationElement(documentationDocument);
 
-            var firstMemberElement = Instances.DocumentationElementXmlOperator.Get_MemberElements(documentationElement).First();
+            var firstMemberElement = Instances.DocumentationElementXmlOperator.Enumerate_MemberElements_Raw(documentationElement).First();
 
             var text = firstMemberElement.ToString();
 
@@ -302,7 +302,7 @@ namespace R5T.S0082
 
             var documentationElement = Instances.DocumentationFileXmlOperator.Get_DocumentationElement(documentationDocument);
 
-            var firstMemberElement = Instances.DocumentationElementXmlOperator.Get_MemberElements(documentationElement).First();
+            var firstMemberElement = Instances.DocumentationElementXmlOperator.Enumerate_MemberElements_Raw(documentationElement).First();
 
             var text = firstMemberElement.ToString();
 

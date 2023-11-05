@@ -1,7 +1,8 @@
 using System;
-
+using System.Linq;
 using R5T.T0141;
 using R5T.T0181.Extensions;
+using R5T.T0212;
 
 
 namespace R5T.S0082
@@ -185,6 +186,77 @@ namespace R5T.S0082
                 memberDocumentation);
 
             Instances.NotepadPlusPlusOperator.Open(outputFilePath);
+        }
+
+        /// <summary>
+        /// Convert an XML documentation comment to a member element (XElement).
+        /// </summary>
+        public void Convert_ToMemberElement()
+        {
+            /// Inputs.
+            var xmlDocumentationComment = Instances.XmlDocumentationComments.SummaryAndResult;
+            var identityString = Instances.Values.Default_IdentityString;
+
+
+            /// Run.
+            var memberElement = Instances.XmlDocumentationCommentOperator.ToMemberElement_WithReformatting(
+                xmlDocumentationComment,
+                identityString);
+            //var memberElement = Instances.XmlDocumentationCommentOperator.ToMemberElement_WithReformatting_Indented(
+            //    xmlDocumentationComment,
+            //    identityString);
+
+            var memberElementXmlText = Instances.XElementOperator.To_Text_NoModifications(memberElement.Value);
+
+            Console.WriteLine($"{xmlDocumentationComment}\n+\n{identityString}\n=>\n{memberElementXmlText}");
+        }
+
+        /// <summary>
+        /// Convert an XML documentation comment to a member element XML text.
+        /// </summary>
+        public void Convert_ToMemberElementXmlText()
+        {
+            /// Inputs.
+            var xmlDocumentationComment = Instances.XmlDocumentationComments.SummaryAndResult;
+            var identityString = Instances.Values.Default_IdentityString;
+
+
+            /// Run.
+            var memberElementXmlText = Instances.XmlDocumentationCommentOperator.ToMemberElementXmlText(
+                xmlDocumentationComment,
+                identityString);
+
+            Console.WriteLine($"{xmlDocumentationComment}\n+\n{identityString}\n=>\n{memberElementXmlText}");
+        }
+
+        /// <summary>
+        /// Demonstration showing the function that tests whether an XML documentation comment needs expansion.
+        /// </summary>
+        public void Needs_Expansion()
+        {
+            var xmlDocumentationComments = new[]
+            {
+                Instances.XmlDocumentationComments.SummaryAndResult,
+                Instances.XmlDocumentationComments.Contains_InheritdocElement,
+                Instances.XmlDocumentationComments.Pathological_ContainsEscapedInheritdoc,
+                Instances.XmlDocumentationComments.Pathological_ContainsSelfReferentialInheritdoc,
+            };
+
+            var results = xmlDocumentationComments
+                .Select(xmlDocumentationComment =>
+                {
+                    var needsExpansion = Instances.XmlDocumentationCommentOperator.Needs_Expansion(xmlDocumentationComment);
+
+                    return (xmlDocumentationComment, needsExpansion);
+                })
+                .Now();
+
+            foreach (var (xmlDocumentationComment, needsExpansion) in results)
+            {
+                Console.WriteLine($"{xmlDocumentationComment}\n=> Expansion needed? {needsExpansion}\n");
+
+                Console.WriteLine();
+            }
         }
     }
 }

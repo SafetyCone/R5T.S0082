@@ -12,11 +12,14 @@ namespace R5T.S0082
             //await DocumentationCommentScripts.Instance.Get_SingleProjectDocumentationComments();
             //await DocumentationCommentScripts.Instance.Get_ProjectDocumentationComments();
 
+            //Demonstrations.Instance.Needs_Expansion();
             //Demonstrations.Instance.Write_MemberDocumentation_ToFile();
             //Demonstrations.Instance.Process_MemberDocumentation_Inheritdoc();
             //Demonstrations.Instance.Process_MemberDocumentation_Inheritdoc_SelfReferential();
             //Demonstrations.Instance.Process_MemberDocumentation_Inheritdoc_PathologicalSelfReferential();
             Demonstrations.Instance.Process_MemberDocumentationSet_Inheritdoc();
+            //Demonstrations.Instance.Convert_ToMemberElementXmlText();
+            //Demonstrations.Instance.Convert_ToMemberElement();
 
 
             //Experiments.Instance.Get_IllFormattedComment();
