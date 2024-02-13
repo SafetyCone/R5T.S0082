@@ -206,7 +206,7 @@ namespace R5T.S0082
             //    xmlDocumentationComment,
             //    identityString);
 
-            var memberElementXmlText = Instances.XElementOperator.To_Text_NoModifications(memberElement.Value);
+            var memberElementXmlText = Instances.XElementOperator.To_Text_AsIs(memberElement.Value);
 
             Console.WriteLine($"{xmlDocumentationComment}\n+\n{identityString}\n=>\n{memberElementXmlText}");
         }
