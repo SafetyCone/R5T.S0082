@@ -1,20 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-using R5T.T0132;
 using R5T.T0159;
-using R5T.T0162;
 using R5T.T0172.Extensions;
 using R5T.T0181.Extensions;
 using R5T.T0212.F000;
+using R5T.T0246;
 
 
 namespace R5T.S0082
 {
-    [FunctionalityMarker]
-    public partial interface IDocumentationCommentScripts : IFunctionalityMarker
+    [ScriptsMarker]
+    public partial interface IDocumentationCommentScripts : IScriptsMarker
     {
         /// <summary>
         /// Get the processed documentation comments for a project.
