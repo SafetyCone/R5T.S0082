@@ -10,14 +10,14 @@ namespace R5T.S0082
         {
             //await DocumentationCommentScripts.Instance.Get_RawProjectDocumentationComments();
             //await DocumentationCommentScripts.Instance.Get_SingleProjectDocumentationComments();
-            //await DocumentationCommentScripts.Instance.Get_ProjectDocumentationComments();
+            await DocumentationCommentScripts.Instance.Get_ProjectDocumentationComments();
 
             //Demonstrations.Instance.Needs_Expansion();
             //Demonstrations.Instance.Write_MemberDocumentation_ToFile();
             //Demonstrations.Instance.Process_MemberDocumentation_Inheritdoc();
             //Demonstrations.Instance.Process_MemberDocumentation_Inheritdoc_SelfReferential();
             //Demonstrations.Instance.Process_MemberDocumentation_Inheritdoc_PathologicalSelfReferential();
-            Demonstrations.Instance.Process_MemberDocumentationSet_Inheritdoc();
+            //Demonstrations.Instance.Process_MemberDocumentationSet_Inheritdoc();
             //Demonstrations.Instance.Convert_ToMemberElementXmlText();
             //Demonstrations.Instance.Convert_ToMemberElement();
 
@@ -37,22 +37,22 @@ namespace R5T.S0082
         }
 
         /// <summary>
-        /// Test Test Test <inheritdoc cref="A" path="/summary"/>
+        /// TestAX <inheritdoc cref="A" path="/summary"/>
         /// </summary>
         public string AX { get; set; }
 
         /// <summary>
-        /// Test <inheritdoc cref="B" path="/summary"/>
+        /// TestA <inheritdoc cref="B" path="/summary"/>
         /// </summary>
         public string A { get; set; }
 
         /// <summary>
-        /// Test <inheritdoc cref="C" path="/summary"/>
+        /// TestB <inheritdoc cref="C" path="/summary"/>
         /// </summary>
         public string B { get; set; }
 
         /// <summary>
-        /// Test <inheritdoc cref="A" path="/summary"/>
+        /// TestC <inheritdoc cref="A" path="/summary"/>
         /// </summary>
         public string C { get; set; }
 
